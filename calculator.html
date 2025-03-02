@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <main>
+        <div class="outerpart">
+            <input type="text" id="Expression" class="screen" disabled/>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="clearTheDisplay('C')">C</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button> 
+            <button onclick="calculateResult()">=</button>
+        </div>   
+    </main>
+    <script>
+        function appendToDisplay(value) {
+            let Expressionfield= document.getElementById('Expression');
+            Expressionfield.value +=value;
+            Expressionfield.style.color ="black"; //to change the colour when the user is typing another expression
+        }
+        function clearTheDisplay(){
+            let Expressionfield= document.getElementById('Expression');
+            Expressionfield.value = '';
+            Expressionfield.style.color ="black"; //it changes the when the user clicks clear button
+        }
+        function calculateResult() {
+            try {
+                document.getElementById('Expression').value = math.evaluate(document.getElementById('Expression').value); //this will evaluate the expression
+            } catch (error) {
+                document.getElementById('Expression').value = "error!"; //if error is occured it will print this messsage
+                document.getElementById('Expression').style.color="red";
+            }
+         }
+        </script>
+</body>
+</html>
